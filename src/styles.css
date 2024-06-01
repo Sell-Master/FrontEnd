@@ -1,1 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* src/styles.scss */
+:root {
+  --primary-color: #3498db;
+  --input-border-color: #d1d1d1;
+  --input-background: #f2f2f2;
+  --button-background: #3498db;
+  --register-button-background: #ff6b6b;
+  --font-family: 'Roboto', sans-serif;
+}
+
+body {
+  font-family: var(--font-family);
+  background: #e0e0e0;
+  margin: 0;
+  padding: 0;
+} 

@@ -1,0 +1,73 @@
+/* src/app/login/login.component.scss */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #d8d8d8; /* Fondo sólido */
+}
+
+.login-box {
+  background: #6dd5ed; /* Color sólido en lugar de degradado */
+  padding: 3rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 350px; /* Ajuste del tamaño */
+}
+
+.login-box h2 {
+  margin-bottom: 1.5rem;
+  color: #333333;
+  font-family: 'Roboto', sans-serif; /* Fuente más moderna */
+  font-weight: 700;
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  background-color: var(--input-background);
+  border: 1px solid var(--input-border-color);
+  border-radius: 5px;
+  padding: 0.5rem;
+}
+
+.input-group label {
+  margin-right: 0.5rem;
+  color: #333333;
+}
+
+.input-group input {
+  border: none;
+  outline: none;
+  background: none;
+  width: 100%;
+  font-size: 1rem;
+  padding: 0.5rem;
+}
+
+button {
+  width: 100%;
+  padding: 0.75rem;
+  margin-top: 1rem;
+  background-color: var(--button-background);
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+button:hover {
+  transform: scale(1.05); /* Efecto al pasar el ratón */
+}
+
+.register-button {
+  background-color: #ff6b6b;
+}
+
+.register-button:hover {
+  transform: scale(1.05); /* Efecto al pasar el ratón */
+}
