@@ -1,22 +1,22 @@
-<!-- src/app/login/login.component.html -->
 <div class="login-container">
   <div class="login-box">
     <h2>INICIO DE SESIÓN</h2>
-    <form>
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
       <div class="input-group">
         <label for="email">
           <i class="fa fa-user"></i>
         </label>
-        <input type="email" id="email" placeholder="example@admin.com">
+        <input type="email" id="email" formControlName="email" placeholder="example@admin.com">
       </div>
       <div class="input-group">
         <label for="password">
           <i class="fa fa-lock"></i>
         </label>
-        <input type="password" id="password" placeholder="••••••••">
+        <input type="password" id="password" formControlName="password" placeholder="••••••••">
       </div>
-      <button type="submit" class="login-button" (click)="onLogin()">Ingresar</button>
+      <button type="submit" class="login-button">Ingresar</button>
       <button type="button" class="register-button" (click)="onRegister()">Registrar</button>
     </form>
   </div>
 </div>
+
