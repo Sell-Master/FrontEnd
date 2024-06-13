@@ -1,4 +1,43 @@
-<div class="home-container">
-    <h2>Estás en Home</h2>
+<p-toolbar styleClass="custom-toolbar">
+  <div class="p-toolbar-group-left">
+    <button pButton type="button" icon="pi pi-bars" (click)="toggleSidebar()"></button>
+    <h2>Menu</h2>
+  </div>
+  <div class="p-toolbar-group-right">
+    <h2>Usuario</h2>
+  </div>
+</p-toolbar>
+
+<p-sidebar [(visible)]="sidebarVisible" position="left" [baseZIndex]="10000" [modal]="false">
+  <ng-template pTemplate="header">
+    <h2>Menu</h2>
+  </ng-template>
+  <p-panelMenu [model]="items" [style]="{width:'300px'}"></p-panelMenu>
+</p-sidebar>
+
+<div class="content" [class.content-shift]="sidebarVisible">
+  <ng-container *ngIf="activeSection === 'home'">
+    <h2>Contenido Principal</h2>
+    <!-- Aquí puedes añadir el contenido principal de tu aplicación -->
+  </ng-container>
+
+  <ng-container *ngIf="activeSection === 'customers'">
+    <app-customers></app-customers>
+  </ng-container>
+
+  <ng-container *ngIf="activeSection === 'employees'">
+    <app-employees></app-employees>
+  </ng-container>
+
+  <ng-container *ngIf="activeSection === 'products'">
+    <app-products></app-products>
+  </ng-container>
+
+  <ng-container *ngIf="activeSection === 'sells'">
+    <app-sells></app-sells>
+  </ng-container>
+
+  <ng-container *ngIf="activeSection === 'sales'">
+    <app-sales></app-sales>
+  </ng-container>
 </div>
-  

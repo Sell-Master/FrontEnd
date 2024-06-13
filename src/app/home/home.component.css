@@ -1,0 +1,50 @@
+.custom-toolbar {
+  background-color: #3498db;
+  color: white;
+}
+
+.p-toolbar-group-left .pi-bars {
+  font-size: 1.5em;
+  color: white;
+}
+
+.p-sidebar {
+  width: 250px;
+  background:  #3498db;
+}
+
+.content {
+  transition: margin-left 0.3s;
+  padding: 10px;
+}
+
+.content-shift {
+  margin-left: 325px;
+}
+
+
+
+
+.custom-toolbar {
+  background-color: #3498db;
+  color: white;
+}
+
+.p-toolbar-group-left .pi-bars {
+  font-size: 1.5em;
+  color: white;
+}
+
+.p-sidebar {
+  width: 250px;
+  background: #3498db;
+}
+
+.content {
+  transition: margin-left 0.3s;
+  padding: 10px;
+}
+
+.content-shift {
+  margin-left: 325px;
+}

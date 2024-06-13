@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { MaterialModule } from '../material.module';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from '../services/auth.service';
+import { InputTextModule } from 'primeng/inputtext';
+import { CheckboxModule } from 'primeng/checkbox';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-login',
@@ -13,8 +15,10 @@ import { AuthService } from '../services/auth.service';
   standalone: true,
   imports: [
     CommonModule,
-    MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    InputTextModule,
+    CheckboxModule,
+    ButtonModule
   ]
 })
 export class LoginComponent {
