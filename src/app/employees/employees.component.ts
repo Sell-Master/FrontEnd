@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service.spec';
 import { TableModule } from 'primeng/table';
-import { ConfirmationService } from 'primeng/api';
 import { MessageService } from 'primeng/api';
 import { DialogModule } from 'primeng/dialog';
 import { InputTextModule } from 'primeng/inputtext';
@@ -20,9 +19,9 @@ import { ButtonModule } from 'primeng/button';
     InputTextModule,
     FormsModule
   ],
-  providers: [ConfirmationService, MessageService],
+  providers: [MessageService],
   templateUrl: './employees.component.html',
-  styleUrl: './employees.component.css'
+  styleUrls: ['./employees.component.css']
 })
 export class EmployeesComponent implements OnInit {
   users: any[] = [];
@@ -31,7 +30,6 @@ export class EmployeesComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private confirmationService: ConfirmationService,
     private messageService: MessageService
   ) {}
 
@@ -41,7 +39,12 @@ export class EmployeesComponent implements OnInit {
 
   loadUsers(): void {
     this.userService.getUsers().subscribe(data => {
-      this.users = data.filter(user => user.typeOfUser.typeId === 2);
+      this.users = data.filter(user => user.typeOfUser?.typeId === 2);
+      // Asegurar que cada usuario tiene un typeOfUser por defecto si no está definido
+      this.users = this.users.map(user => ({
+        ...user,
+        typeOfUser: user.typeOfUser || { description: '' }
+      }));
     });
   }
 
@@ -58,7 +61,7 @@ export class EmployeesComponent implements OnInit {
       password: this.selectedUser.password || 'defaultPassword', // Asigna un valor por defecto si no hay contraseña
       typeId: 2 // Aseguramos que el tipo de usuario sea 2
     };
-  
+
     if (this.selectedUser.userId) {
       this.userService.updateUser(this.selectedUser.userId, userToSave).subscribe(
         () => {
@@ -85,22 +88,25 @@ export class EmployeesComponent implements OnInit {
       );
     }
   }
-  
 
-  confirmDelete(userId: number): void {
-    this.confirmationService.confirm({
-      message: 'Are you sure you want to delete this user?',
-      accept: () => {
-        this.userService.deleteUser(userId).subscribe(() => {
+  deleteUser(userId: number): void {
+    if (confirm('Are you sure you want to delete this user?')) {
+      this.userService.deleteUser(userId).subscribe(
+        () => {
           this.loadUsers();
           this.messageService.add({ severity: 'success', summary: 'Success', detail: 'User deleted' });
-        });
-      }
-    });
+        },
+        error => {
+          console.error('Error deleting user:', error);
+          this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Error deleting user' });
+        }
+      );
+    }
   }
 
   addUser(): void {
-    this.selectedUser = {};
+    this.selectedUser = { typeOfUser: { description: '' } };
     this.displayDialog = true;
   }
+  
 }

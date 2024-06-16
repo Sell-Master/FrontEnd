@@ -1,1 +1,61 @@
-<p>products works!</p>
+<div class="table-header">
+  <h2>Products</h2>
+  <button pButton type="button" class="btn btn-success" (click)="addProduct()">
+    <i class="fas fa-plus"></i> Add Product
+  </button>
+</div>
+
+<p-table [value]="products">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>ProductID</th>
+      <th>Product Type</th>
+      <th>Brand</th>
+      <th>Additional Info</th>
+      <th>Price</th>
+      <th>Actions</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-product>
+    <tr>
+      <td>{{ product.productID }}</td>
+      <td>{{ product.productType }}</td>
+      <td>{{ product.brand }}</td>
+      <td>{{ product.additionalInfo }}</td>
+      <td>{{ product.price }}</td>
+      <td>
+        <button pButton type="button" class="btn btn-primary" (click)="editProduct(product)">
+          <i class="fas fa-edit"></i>
+        </button>
+        <button pButton type="button" class="btn btn-danger" (click)="deleteProduct(product.productID)">
+          <i class="fas fa-trash-alt"></i>
+        </button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<p-dialog header="Product Details" [(visible)]="displayDialog" [modal]="true" [style]="{width: '50vw'}">
+  <div class="p-fluid">
+    <div class="p-field">
+      <label for="productType">Product Type</label>
+      <input id="productType" type="text" pInputText [(ngModel)]="selectedProduct.productType"/>
+    </div>
+    <div class="p-field">
+      <label for="brand">Brand</label>
+      <input id="brand" type="text" pInputText [(ngModel)]="selectedProduct.brand"/>
+    </div>
+    <div class="p-field">
+      <label for="additionalInfo">Additional Info</label>
+      <input id="additionalInfo" type="text" pInputText [(ngModel)]="selectedProduct.additionalInfo"/>
+    </div>
+    <div class="p-field">
+      <label for="price">Price</label>
+      <input id="price" type="text" pInputText [(ngModel)]="selectedProduct.price"/>
+    </div>
+  </div>
+  <p-footer>
+    <button pButton type="button" label="Save" (click)="saveProduct()"></button>
+    <button pButton type="button" label="Cancel" (click)="displayDialog=false"></button>
+  </p-footer>
+</p-dialog>

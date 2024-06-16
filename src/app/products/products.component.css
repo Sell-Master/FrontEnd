@@ -1,0 +1,53 @@
+.table-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.table-header h2 {
+  margin: 0;
+}
+
+.table-header .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 5px;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  color: white;
+}
+
+.table-header .btn.btn-success {
+  background-color: #28a745;
+}
+
+.table-header .btn i {
+  font-size: 1rem;
+  margin-right: 5px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 5px;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  color: white;
+}
+
+.btn.btn-primary {
+  background-color: #007bff;
+}
+
+.btn.btn-danger {
+  background-color: #dc3545;
+}
+
+.btn i {
+  font-size: 1rem;
+}
