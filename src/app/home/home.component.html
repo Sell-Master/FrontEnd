@@ -21,10 +21,6 @@
     <!-- Aquí puedes añadir el contenido principal de tu aplicación -->
   </ng-container>
 
-  <ng-container *ngIf="activeSection === 'customers'">
-    <app-customers></app-customers>
-  </ng-container>
-
   <ng-container *ngIf="activeSection === 'employees'">
     <app-employees></app-employees>
   </ng-container>
@@ -35,6 +31,10 @@
 
   <ng-container *ngIf="activeSection === 'sells'">
     <app-sells></app-sells>
+  </ng-container>
+
+  <ng-container *ngIf="activeSection === 'inventory'">
+    <app-inventory></app-inventory>
   </ng-container>
 
   <ng-container *ngIf="activeSection === 'sales'">

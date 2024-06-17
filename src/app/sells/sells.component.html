@@ -1,1 +1,57 @@
-<p>sells works!</p>
+<div class="table-header">
+  <h2>Orders</h2>
+  <button pButton type="button" class="btn btn-success" (click)="addOrder()">
+    <i class="fas fa-plus"></i> Add Order
+  </button>
+</div>
+
+<p-table [value]="orders">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Order ID</th>
+      <th>Fecha</th>
+      <th>Monto Total</th>
+      <th>Client</th>
+      <th>User</th>
+      <th>Actions</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-order>
+    <tr>
+      <td>{{ order.orderID }}</td>
+      <td>{{ order.fecha | date: 'dd-MM-yyyy' }}</td>
+      <td>{{ order.montoTotal }}</td>
+      <td>{{ order.client.firstName }} {{ order.client.lastName }}</td>
+      <td>{{ order.user.firstName }} {{ order.user.lastName }}</td>
+      <td>
+        <button pButton type="button" class="btn btn-primary" (click)="editOrder(order)">
+          <i class="fas fa-edit"></i>
+        </button>
+        <button pButton type="button" class="btn btn-danger" (click)="deleteOrder(order.orderID)">
+          <i class="fas fa-trash-alt"></i>
+        </button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<p-dialog header="Order Details" [(visible)]="displayDialog" [modal]="true" [style]="{width: '50vw'}">
+  <div class="p-fluid">
+    <div class="p-field">
+      <label for="client">Client</label>
+      <p-dropdown [options]="clients" [(ngModel)]="selectedOrder.client" optionLabel="fullInfo" placeholder="Select a Client"></p-dropdown>
+    </div>
+    <div class="p-field">
+      <label for="user">User</label>
+      <p-dropdown [options]="users" [(ngModel)]="selectedOrder.user" optionLabel="fullInfo" placeholder="Select a User"></p-dropdown>
+    </div>
+    <div class="p-field">
+      <label for="montoTotal">Monto Total</label>
+      <input id="montoTotal" type="number" pInputText [(ngModel)]="selectedOrder.montoTotal"/>
+    </div>
+  </div>
+  <p-footer>
+    <button pButton type="button" label="Save" (click)="saveOrder()"></button>
+    <button pButton type="button" label="Cancel" (click)="displayDialog=false"></button>
+  </p-footer>
+</p-dialog>

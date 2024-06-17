@@ -11,6 +11,7 @@ import { ProductsComponent } from '../products/products.component';
 import { SalesComponent } from '../sales/sales.component';
 import { SellsComponent } from '../sells/sells.component';
 import { EmployeesComponent } from '../employees/employees.component';
+import { InventoryComponent } from '../inventory/inventory.component';
 
 @Component({
   selector: 'app-home',
@@ -28,7 +29,8 @@ import { EmployeesComponent } from '../employees/employees.component';
     ProductsComponent,
     SalesComponent,
     SellsComponent,
-    EmployeesComponent
+    EmployeesComponent,
+    InventoryComponent
   ]
 })
 export class HomeComponent implements OnInit {
@@ -44,10 +46,10 @@ export class HomeComponent implements OnInit {
         label: 'Administrator',
         expanded: true,
         items: [
-          { label: 'Customers', icon: 'pi pi-fw pi-users', command: () => this.changeSection('customers') },
           { label: 'Employees', icon: 'pi pi-fw pi-users', command: () => this.changeSection('employees') },
           { label: 'Products', icon: 'pi pi-fw pi-box', command: () => this.changeSection('products') },
-          { label: 'Sells', icon: 'pi pi-fw pi-shopping-cart', command: () => this.changeSection('sells') }
+          { label: 'Sells', icon: 'pi pi-fw pi-shopping-cart', command: () => this.changeSection('sells') },
+          { label: 'Inventory', icon: 'pi pi-fw pi-briefcase', command: () => this.changeSection('inventory') }
         ]
       },
       {
