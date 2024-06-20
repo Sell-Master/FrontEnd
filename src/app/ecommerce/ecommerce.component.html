@@ -1,0 +1,48 @@
+<p-toolbar styleClass="custom-toolbar">
+  <div class="p-toolbar-group-left">
+    <h2>SELLMASTER - E-COMMERCE</h2>
+  </div>
+  <div class="p-toolbar-group-right">
+    <button pButton type="button" icon="pi pi-star" (click)="viewFavorites()" class="favorites-button"></button>
+    <button pButton type="button" icon="pi pi-shopping-cart" (click)="viewCart()" class="cart-button"></button>
+    <h2>{{ userName }}</h2>
+    <button pButton type="button" icon="pi pi-sign-out" (click)="logout()" class="logout-button"></button>
+  </div>
+</p-toolbar>
+
+<div class="ecommerce-container">
+  <div class="product-list">
+    <div *ngFor="let product of products" class="product-card">
+      <mat-card>
+        <mat-card-header>
+          <div mat-card-avatar class="product-header-image"></div>
+          <mat-card-title>{{ product.productType }}</mat-card-title>
+          <mat-card-subtitle>{{ product.brand }}</mat-card-subtitle>
+          <button mat-button icon="pi pi-star" class="favorite-button" (click)="addToFavorites(product)"></button>
+        </mat-card-header>
+        <img mat-card-image src="assets/product-placeholder.png" alt="{{ product.productType }}">
+        <mat-card-content>
+          <p>{{ product.additionalInfo }}</p>
+          <p><strong>Price:</strong> {{ product.price | currency }}</p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button class="buy-now" (click)="addToCart(product)">BUY NOW</button>
+          <button mat-button class="details">DETAILS</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>
+
+<p-dialog header="Enter Quantity" [(visible)]="display" [modal]="true" [style]="{width: '50vw'}">
+  <form [formGroup]="quantityForm" (ngSubmit)="confirmAddToCart()">
+    <div class="p-field">
+      <label for="quantity">Quantity</label>
+      <input id="quantity" type="number" pInputText formControlName="quantity" [max]="selectedProduct?.stock"/>
+    </div>
+    <p-footer>
+      <button pButton type="submit" label="Add to Cart" [disabled]="!quantityForm.valid"></button>
+      <button pButton type="button" label="Cancel" (click)="display = false"></button>
+    </p-footer>
+  </form>
+</p-dialog>

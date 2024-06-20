@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductService } from '../services/product.service';
+import { ProductService } from '../services/api/product.service';
 import { TableModule } from 'primeng/table';
 import { MessageService } from 'primeng/api';
 import { DialogModule } from 'primeng/dialog';

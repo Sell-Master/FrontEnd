@@ -2,8 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '../services/api/auth.service';
 import { InputTextModule } from 'primeng/inputtext';
 import { CheckboxModule } from 'primeng/checkbox';
 import { ButtonModule } from 'primeng/button';
@@ -33,14 +32,32 @@ export class LoginComponent {
 
   onLogin() {
     if (this.loginForm.valid) {
-      console.log('Login Form Data:', this.loginForm.value);
       this.authService.login(this.loginForm.value).subscribe({
         next: (response) => {
           console.log('User logged in successfully!', response);
-          this.router.navigate(['/home']);
+          this.authService.getUserByEmail(this.loginForm.value.email).subscribe({
+            next: (user) => {
+              if (user) {
+                sessionStorage.setItem('user-details', JSON.stringify(user));
+                this.redirectUser(user);
+              } else {
+                console.error('User not found.');
+              }
+            },
+            error: (err) => console.error('Failed to fetch user details.', err)
+          });
         },
         error: (err) => console.error('Login failed. Please try again.', err)
       });
+    }
+  }  
+
+  redirectUser(user: any) {
+    const userType = user.typeOfUser.description;
+    if (userType === 'CLIENT') {
+      this.router.navigate(['/ecommerce']);
+    } else {
+      this.router.navigate(['/home']);
     }
   }
 

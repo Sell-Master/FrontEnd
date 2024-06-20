@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from '../services/api/auth.service';
 import { CommonModule } from '@angular/common';
 import { SidebarModule } from 'primeng/sidebar';
 import { ButtonModule } from 'primeng/button';
@@ -37,8 +39,9 @@ export class HomeComponent implements OnInit {
   sidebarVisible: boolean = false;
   items: MenuItem[] = [];
   activeSection: string = 'home';
+  userName: string | null = null;
 
-  constructor() {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
     this.items = [
@@ -60,13 +63,26 @@ export class HomeComponent implements OnInit {
         ]
       }
     ];
+  
+    const userDetailsString = sessionStorage.getItem('user-details');
+    if (userDetailsString) {
+      const userDetails = JSON.parse(userDetailsString);
+      if (userDetails) {
+        this.userName = `${userDetails.firstName} ${userDetails.lastName}`;
+      }
+    }
   }
-
+  
   toggleSidebar() {
     this.sidebarVisible = !this.sidebarVisible;
   }
 
   changeSection(section: string) {
     this.activeSection = section;
+  }
+
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['/']);
   }
 }

@@ -23,8 +23,6 @@
 }
 
 
-
-
 .custom-toolbar {
   background-color: #3498db;
   color: white;
@@ -32,6 +30,11 @@
 
 .p-toolbar-group-left .pi-bars {
   font-size: 1.5em;
+  color: white;
+}
+
+.p-toolbar-group-right .logout-button {
+  background-color: #e74c3c;
   color: white;
 }
 

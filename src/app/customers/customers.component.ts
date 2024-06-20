@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../services/user.service.spec';
+import { UserService } from '../services/api/user.service.spec';
 import { TableModule } from 'primeng/table';
 
 @Component({

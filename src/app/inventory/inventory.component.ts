@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { InventoryService } from '../services/inventory.service';
+import { InventoryService } from '../services/api/inventory.service';
 import { TableModule } from 'primeng/table';
 import { MessageService } from 'primeng/api';
 import { DialogModule } from 'primeng/dialog';
