@@ -13,17 +13,17 @@ RUN npm install
 # Copia el resto de los archivos de la aplicación al contenedor
 COPY . .
 
-# Construye la aplicación Angular para producción
+# Construye la aplicación Vue para producción
 RUN npm run build --prod
 
 # Usa una imagen base de Nginx para servir los archivos estáticos
 FROM nginx:stable-alpine as production-stage
 
 # Copia los archivos construidos de la etapa anterior a la carpeta de Nginx
-COPY --from=build-stage /app/dist /usr/share/nginx/html
+COPY --from=build-stage /app/dist/sell-master /usr/share/nginx/html
 
 # Copia el archivo de configuración de Nginx personalizado (opcional)
-# COPY nginx.conf /etc/nginx/nginx.conf
+COPY nginx.conf /etc/nginx/nginx.conf
 
 # Expone el puerto 80 para acceder a la aplicación
 EXPOSE 80
