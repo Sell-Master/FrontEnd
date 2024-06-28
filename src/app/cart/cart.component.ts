@@ -5,6 +5,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { Order } from '../services/storage/order.model';
+import { BankDetails } from '../services/storage/BankDetails';
+import { MatDialogModule, MatDialog } from '@angular/material/dialog';
+import { BankDetailsFormComponent } from '../bank-details-form/bank-details-form.component';
 
 @Component({
   selector: 'app-cart',
@@ -13,7 +16,8 @@ import { Order } from '../services/storage/order.model';
     CommonModule,
     MatCardModule,
     MatButtonModule,
-    ButtonModule
+    ButtonModule,
+    MatDialogModule
   ],
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css']
@@ -22,7 +26,7 @@ export class CartComponent implements OnInit {
   cart: any[] = [];
   total: number = 0;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, public dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.loadCart();
@@ -51,26 +55,36 @@ export class CartComponent implements OnInit {
   }
 
   saveOrder(): void {
-    const order = new Order(
-      new Date().toISOString(),
-      this.total,
-      this.cart.map(product => ({
-        productID: product.productID,
-        quantity: product.quantity,
-        price: product.price,
-        total: product.total
-      }))
-    );
-
-    const ordersString = localStorage.getItem('orders');
-    let orders = [];
-    if (ordersString) {
-      orders = JSON.parse(ordersString);
-    }
-    orders.push(order);
-    localStorage.setItem('orders', JSON.stringify(orders));
-    this.clearCart();
-    alert('Order saved successfully');
+    const dialogRef = this.dialog.open(BankDetailsFormComponent, {
+      width: '600px',
+      data: {}
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        const order = new Order(
+          new Date().toISOString(),
+          this.total,
+          this.cart.map(product => ({
+            productID: product.productID,
+            quantity: product.quantity,
+            price: product.price,
+            total: product.total
+          })),
+          result // bank details
+        );
+  
+        const ordersString = localStorage.getItem('orders');
+        let orders = [];
+        if (ordersString) {
+          orders = JSON.parse(ordersString);
+        }
+        orders.push(order);
+        localStorage.setItem('orders', JSON.stringify(orders));
+        this.clearCart();
+        alert('Order saved successfully');
+      }
+    });
   }
 
   clearCart(): void {

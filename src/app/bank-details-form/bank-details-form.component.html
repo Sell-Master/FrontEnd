@@ -1,0 +1,39 @@
+<div mat-dialog-title>Bank Details</div>
+<div mat-dialog-content>
+  <form [formGroup]="bankDetailsForm">
+    <mat-form-field appearance="outline">
+      <mat-label>Nombre</mat-label>
+      <input matInput formControlName="nombre">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Apellido</mat-label>
+      <input matInput formControlName="apellido">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Número de Tarjeta</mat-label>
+      <input matInput formControlName="numeroTarjeta" type="text">
+      <mat-error *ngIf="bankDetailsForm.get('numeroTarjeta')?.hasError('pattern')">
+        Número de tarjeta inválido. Deben ser 16 dígitos.
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>CVC</mat-label>
+      <input matInput formControlName="cvc" type="text">
+      <mat-error *ngIf="bankDetailsForm.get('cvc')?.hasError('pattern')">
+        CVC inválido. Deben ser 3 dígitos.
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Mes</mat-label>
+      <input matInput formControlName="mes" type="number">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Año</mat-label>
+      <input matInput formControlName="año" type="number">
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onCancel()">Cancelar</button>
+  <button mat-button (click)="onSave()">Guardar Datos</button>
+</div>

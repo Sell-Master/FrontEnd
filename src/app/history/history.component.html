@@ -4,10 +4,13 @@
     <div *ngFor="let order of orders" class="order-card">
       <mat-card>
         <mat-card-header>
-          <mat-card-title>Order on {{ order.fecha }}</mat-card-title>
+          <mat-card-title>Order on {{ order.fecha | date:'yyyy-MM-dd HH:mm:ss' }}</mat-card-title>
         </mat-card-header>
         <mat-card-content>
           <p><strong>Total Amount:</strong> {{ order.montoTotal | currency }}</p>
+          <div *ngIf="order.bankDetails">
+            <p><strong>Bank Details:</strong> {{ order.bankDetails.numeroTarjeta.slice(0, 5) + '*****' }}</p>
+          </div>
           <p-accordion>
             <p-accordionTab *ngFor="let product of order.products" [header]="'Product Type: ' + (productsDetails[product.productID]?.productType || product.productID)">
               <div *ngIf="productsDetails[product.productID] as productDetails">

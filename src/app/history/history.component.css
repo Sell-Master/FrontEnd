@@ -20,7 +20,7 @@
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
   transition: transform 0.3s ease;
-  margin: 50px; /* Add padding inside the card */
+  margin: 10px; /* Add padding inside the card */
 }
 
 .order-card:hover {
@@ -35,9 +35,5 @@
 .back-button-container {
   display: flex;
   justify-content: center;
-  margin-top: 20px;
 }
 
-.history-container h2 {
-  margin-bottom: 20px;
-}
