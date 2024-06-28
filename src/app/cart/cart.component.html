@@ -26,7 +26,8 @@
   <div class="cart-summary">
     <h3>Total: {{ total | currency }}</h3>
   </div>
-  <div class="back-button-container">
+  <div class="button-container">
     <button mat-raised-button color="primary" style="margin-top: 15px; color: rgb(119, 0, 255); border: none; background: none;" (click)="backToEcommerce()">Back to E-commerce</button>
+    <button mat-raised-button color="primary" style="margin-top: 15px; margin-left: 10px;" (click)="saveOrder()">Realizar Compra</button>
   </div>
 </div>

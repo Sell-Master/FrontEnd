@@ -5,6 +5,7 @@ import { RegisterComponent } from './register/register.component';
 import { EcommerceComponent } from './ecommerce/ecommerce.component';
 import { FavoritesComponent } from './favorites/favorites.component';
 import { CartComponent } from './cart/cart.component';
+import { HistoryComponent } from './history/history.component';
 
 export const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -13,5 +14,6 @@ export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'favorites', component: FavoritesComponent },
   { path: 'cart', component: CartComponent },
+  { path: 'history', component: HistoryComponent },
   { path: 'ecommerce', component: EcommerceComponent },
 ];

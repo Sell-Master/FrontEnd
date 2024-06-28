@@ -55,13 +55,7 @@ export class EcommerceComponent implements OnInit {
     this.loadProducts();
     this.loadFavorites();
     this.loadCart();
-    const userDetailsString = sessionStorage.getItem('user-details');
-    if (userDetailsString) {
-      const userDetails = JSON.parse(userDetailsString);
-      if (userDetails) {
-        this.userName = `${userDetails.firstName} ${userDetails.lastName}`;
-      }
-    }
+    this.loadUserDetails();
   }
 
   loadProducts(): void {
@@ -134,6 +128,10 @@ export class EcommerceComponent implements OnInit {
     this.router.navigate(['/favorites']);
   }
 
+  viewHistory(): void {
+    this.router.navigate(['/history']);
+  }
+
   logout() {
     this.authService.logout();
     this.router.navigate(['/']);
@@ -146,5 +144,17 @@ export class EcommerceComponent implements OnInit {
 
   isFavorite(product: any): boolean {
     return this.favorites.some(fav => fav.productID === product.productID);
+  }
+
+  loadUserDetails(): void {
+    const userDetailsString = sessionStorage.getItem('user-details');
+    if (userDetailsString) {
+      const userDetails = JSON.parse(userDetailsString);
+      if (userDetails) {
+        this.userName = `${userDetails.firstName} ${userDetails.lastName}`;
+      }
+    } else {
+      console.error('User details not found in session.');
+    }
   }
 }

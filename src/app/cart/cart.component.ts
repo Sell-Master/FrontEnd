@@ -4,6 +4,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
+import { Order } from '../services/storage/order.model';
 
 @Component({
   selector: 'app-cart',
@@ -47,5 +48,33 @@ export class CartComponent implements OnInit {
 
   backToEcommerce(): void {
     this.router.navigate(['/ecommerce']);
+  }
+
+  saveOrder(): void {
+    const order = new Order(
+      new Date().toISOString(),
+      this.total,
+      this.cart.map(product => ({
+        productID: product.productID,
+        quantity: product.quantity,
+        price: product.price,
+        total: product.total
+      }))
+    );
+
+    const ordersString = localStorage.getItem('orders');
+    let orders = [];
+    if (ordersString) {
+      orders = JSON.parse(ordersString);
+    }
+    orders.push(order);
+    localStorage.setItem('orders', JSON.stringify(orders));
+    this.clearCart();
+    alert('Order saved successfully');
+  }
+
+  clearCart(): void {
+    this.cart = [];
+    sessionStorage.removeItem('cart');
   }
 }

@@ -5,10 +5,12 @@
   <div class="p-toolbar-group-right">
     <button pButton type="button" icon="pi pi-star" (click)="viewFavorites()" class="favorites-button" style="margin-right: 15px; background: none; color: goldenrod; border: none;"></button>
     <button pButton type="button" icon="pi pi-shopping-cart" (click)="viewCart()" class="cart-button" style="margin-right: 15px; background: none; color: rgb(87, 87, 175); border: none;"></button>
+    <button pButton type="button" icon="pi pi-history" (click)="viewHistory()" class="history-button" style="margin-right: 15px; background: none; color: grey; border: none;"></button>
     <h2 style="margin-right: 15px;">{{ userName }}</h2>
     <button pButton type="button" icon="pi pi-sign-out" (click)="logout()" class="logout-button" style="margin-right: 15px; background: none; color: rgb(255, 0, 0); border: none;"></button>
   </div>
 </p-toolbar>
+
 
 <div class="ecommerce-container" style="margin-top: 60px;">
   <div class="product-list">
