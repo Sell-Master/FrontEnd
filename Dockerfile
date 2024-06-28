@@ -20,7 +20,7 @@ RUN npm run build --prod
 FROM nginx:stable-alpine as production-stage
 
 # Copia los archivos construidos de la etapa anterior a la carpeta de Nginx
-COPY --from=build-stage /app/dist/sell-master /usr/share/nginx/html
+COPY --from=build-stage /app/dist/sell-master/browser /usr/share/nginx/html
 
 # Copia el archivo de configuración de Nginx personalizado (opcional)
 COPY nginx.conf /etc/nginx/nginx.conf
