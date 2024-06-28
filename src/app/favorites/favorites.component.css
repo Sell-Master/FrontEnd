@@ -1,64 +1,71 @@
 .favorites-container {
-    padding: 20px;
-    text-align: center;
-  }
-  
-  .favorites-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-  }
-  
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.favorites-container h2 {
+  margin-bottom: 20px;
+}
+
+.favorites-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  width: 100%;
+}
+
+.product-card {
+  flex: 1 1 calc(33.333% - 20px);
+  box-sizing: border-box;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.product-card:hover {
+  transform: scale(1.05);
+}
+
+.product-card img {
+  width: 150px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  border-radius: 8px 8px 0 0;
+}
+
+.mat-card-actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.mat-raised-button.buy-now,
+.mat-raised-button.details {
+  color: blue; /* Font color for buttons */
+}
+
+.remove-button {
+  color: red; /* Color for remove button */
+}
+
+.back-button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+@media (max-width: 768px) {
   .product-card {
-    flex: 1 1 calc(33.333% - 20px);
-    box-sizing: border-box;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    flex: 1 1 calc(50% - 20px);
   }
-  
-  .product-card img {
-    width: 150px; /* Adjust size as needed */
-    height: auto; /* Maintains aspect ratio */
-    display: block;
-    margin: 0 auto;
-    border-radius: 8px 8px 0 0;
+}
+
+@media (max-width: 480px) {
+  .product-card {
+    flex: 1 1 100%;
   }
-  
-  .mat-card-actions {
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .remove-button {
-    background-color: #e74c3c;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .remove-button .pi {
-    margin-right: 5px;
-  }
-  
-  .remove-button:hover {
-    background-color: #c0392b;
-  }
-  
-  button {
-    margin-top: 20px;
-    background-color: #3498db;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background-color: #2980b9;
-  }
-  
+}

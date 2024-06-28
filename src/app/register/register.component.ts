@@ -35,7 +35,10 @@ export class RegisterComponent {
     if (this.registerForm.valid) {
       console.log('Request Body:', this.registerForm.value);
       this.authService.register(this.registerForm.value).subscribe({
-        next: (response) => console.log('User registered successfully!', response),
+        next: (response) => {
+          console.log('User registered successfully!', response);
+          this.router.navigate(['/login']);
+        },
         error: (err) => console.error('Registration failed. Please try again.', err)
       });
     } else {

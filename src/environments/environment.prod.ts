@@ -1,6 +1,6 @@
 // src/environments/environment.ts
 export const environment = {
     production: true,
-    apiUrl: 'http://localhost:8080'
+    apiUrl: 'http://52.170.24.189:8080'
   };
   

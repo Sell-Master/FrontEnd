@@ -10,6 +10,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { ToolbarModule } from 'primeng/toolbar';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'app-ecommerce',
@@ -23,7 +24,8 @@ import { DialogModule } from 'primeng/dialog';
     MatToolbarModule,
     ToolbarModule,
     ButtonModule,
-    DialogModule
+    DialogModule,
+    MatIcon
   ],
   templateUrl: './ecommerce.component.html',
   styleUrls: ['./ecommerce.component.css']
@@ -36,6 +38,7 @@ export class EcommerceComponent implements OnInit {
   display: boolean = false;
   selectedProduct: any = null;
   quantityForm: FormGroup;
+  displayDetails: boolean = false;
 
   constructor(
     private inventoryService: InventoryService,
@@ -111,7 +114,12 @@ export class EcommerceComponent implements OnInit {
   }
 
   addToFavorites(product: any): void {
-    this.favorites.push(product);
+    const index = this.favorites.findIndex(fav => fav.productID === product.productID);
+    if (index > -1) {
+      this.favorites.splice(index, 1); // Remove from favorites
+    } else {
+      this.favorites.push(product); // Add to favorites
+    }
     sessionStorage.setItem('favorites', JSON.stringify(this.favorites));
   }
 
@@ -129,5 +137,14 @@ export class EcommerceComponent implements OnInit {
   logout() {
     this.authService.logout();
     this.router.navigate(['/']);
+  }
+
+  showDetails(product: any): void {
+    this.selectedProduct = product;
+    this.displayDetails = true;
+  }
+
+  isFavorite(product: any): boolean {
+    return this.favorites.some(fav => fav.productID === product.productID);
   }
 }

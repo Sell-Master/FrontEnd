@@ -10,7 +10,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 })
 export class AuthService {
   private baseUrl = `${environment.apiUrl}/api/auth`;
-  private apiUrl = 'http://localhost:8080/api';
+  private apiUrl = 'http://52.170.24.189:8080/api';
   private jwtHelper = new JwtHelperService();
   private tokenKey = 'auth-token';
   private userKey = 'user-data';
