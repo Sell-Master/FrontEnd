@@ -1,5 +1,8 @@
 .history-container {
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .order-list {
@@ -11,24 +14,17 @@
 }
 
 .order-card {
-  flex: 1 1 calc(33.333% - 20px);
+  flex: 1 1 calc(50% - 20px); /* Adjust width as needed */
   box-sizing: border-box;
   border: 1px solid #ddd;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
   transition: transform 0.3s ease;
+  margin: 50px; /* Add padding inside the card */
 }
 
 .order-card:hover {
   transform: scale(1.05);
-}
-
-.order-card img {
-  width: 150px;
-  height: auto;
-  display: block;
-  margin: 0 auto;
-  border-radius: 8px 8px 0 0;
 }
 
 .mat-card-actions {

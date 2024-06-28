@@ -4,15 +4,15 @@ import { MatCardModule } from '@angular/material/card';
 import { Router } from '@angular/router';
 import { Order } from '../services/storage/order.model';
 import { ProductService } from '../services/api/product.service';
-import { Observable } from 'rxjs';
-import { switchMap, map } from 'rxjs/operators';
+import { AccordionModule } from 'primeng/accordion'; // Import PrimeNG Accordion module
 
 @Component({
   selector: 'app-history',
   standalone: true,
   imports: [
     CommonModule,
-    MatCardModule
+    MatCardModule,
+    AccordionModule // Add AccordionModule to imports
   ],
   templateUrl: './history.component.html',
   styleUrls: ['./history.component.css']
